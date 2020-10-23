@@ -38,6 +38,8 @@ class ChangelogEntry:
 
 
 class handler(requestsManager.asyncRequestHandler):
+    MODULE_NAME = "changelog"
+
     @tornado.web.asynchronous
     @tornado.gen.engine
     @sentry.captureTornado
@@ -46,7 +48,7 @@ class handler(requestsManager.asyncRequestHandler):
 
         try:
             lines = []
-            with open("../ci-system/ci-system/changelog.txt", "r") as f:
+            with open("./changelog.txt", "r") as f:
                 for i, l in enumerate(f):
                     if i >= 100:
                         break
